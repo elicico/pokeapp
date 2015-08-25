@@ -31,7 +31,9 @@ var Autocomplete = React.createClass({
       this.props.onSelectPokemon(results[this.state.selectedIndex]);
       break;
       case ARROW_UP_KEY:
-      this.setState({ selectedIndex: Math.max(0, this.state.selectedIndex - 1) })
+      var selectedIndex = Math.max(0, this.state.selectedIndex - 1);
+      this.setState({ selectedIndex: selectedIndex })
+      this.refs.itemsContainer.getDOMNode().scrollTop = 80 * selectedIndex;
       break;
       case ARROW_DOWN_KEY:
       var selectedIndex = Math.min(results.length - 1, this.state.selectedIndex + 1);
@@ -65,7 +67,7 @@ var Autocomplete = React.createClass({
     var filteredResults = this.matchingPokemons(this.state.value);
 
     return (
-      <div className="autocomplete">
+      <div className="autocomplete--flex">
         <input
           className="autocomplete__input"
           onChange={ this.handleChange }
@@ -73,11 +75,12 @@ var Autocomplete = React.createClass({
           placeholder="pokemon name here"
           value={ this.state.value }
         />
-        <div className="autocomplete__results">
-        <ul className="autocomplete__results__ul" ref="itemsContainer">
+        <ul 
+          className={ "autocomplete__results__ul" + ( filteredResults.length > 0 ? " has-results" : "" ) }
+          ref="itemsContainer"
+        >
           { filteredResults.map(this.renderItem) }
         </ul>
-        </div>
       </div>
     );
   },

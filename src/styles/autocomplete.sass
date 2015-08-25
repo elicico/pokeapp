@@ -1,5 +1,12 @@
 .autocomplete
-  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+
+.autocomplete--flex
+  @extend .autocomplete
+  flex: 1 1
 
 .autocomplete__input
   padding: 15px
@@ -8,24 +15,62 @@
   font-size: 1.5em
   text-align: center
   outline: 0px
-  margin-top: 55%
+
+  .sheets__item--left &
+    color: rgba(51, 154, 238, 0.8)
+
+    @include placeholder
+      color: rgba(69, 169, 251, 0.35)
+
+  .sheets__item--right &
+    color: rgba(138, 63, 128, 0.8)
+
+    @include placeholder
+      color: rgba(201, 106, 189, 0.35)
 
 .autocomplete__results__ul
-  margin-top: 30px
-  margin-bottom: 30px
+  margin: 30px auto 0
   width: 42%
-  height: 40vh
   overflow-y: auto
-  flex-wrap: wrap
-  flex-direction: row
-  display: flex
+  transition: height 0.2s ease-out
+  height: 0
+
+  &.has-results
+    height: 40vh
 
 .autocomplete__results__li
-  align-items: center
   height: 50px
-  padding: 10px
-  padding-right: 25px
-  flex: 1 1 auto
-  
+  line-height: 50px
+  margin-top: 10px
+  border-radius: 5px
+  padding: 10px 15px
+  font-size: 1.3em
+  margin-right: 10px
+
+  &:first-child
+    margin-top: 0
+
+  img
+    display: inline-block
+    vertical-align: text-bottom
+
   &:hover, &.is-selected
-    background-color: #ffffff
+    background-color: #ffffff !important
+
+  .sheets__item--left &
+    background-color: rgba(95, 150, 198, 0.3)
+
+    &:hover
+      color: rgba(95, 150, 198, 0.6)
+
+    &.is-selected
+      color: rgba(51, 154, 238, 0.8)
+
+  .sheets__item--right &
+    background-color: rgba(190, 94, 176, 0.3)
+
+    &:hover
+      color: rgba(190, 94, 176, 0.6)
+
+    &.is-selected
+      color: rgba(138, 63, 128, 0.8)

@@ -25,16 +25,10 @@ var Sheet = React.createClass({
   },
 
   render: function() {
-    return (
-      <div>
-          {
-            this.state.view === "autocomplete" ?
-            <Autocomplete onSelectPokemon={ this.handleSelectedPokemon }/> :
-              <Results pokemon={ this.state.selectedPokemon } onBack={ this.handleBackButton }/>
-          }
-      </div>
-    );
-  }
+    return this.state.view === "autocomplete" ?
+      <Autocomplete onSelectPokemon={ this.handleSelectedPokemon }/> :
+      <Results pokemon={ this.state.selectedPokemon } onBack={ this.handleBackButton }/>;
+}
 
 });
 
