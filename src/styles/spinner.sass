@@ -1,0 +1,63 @@
+@keyframes sk-cubeGridScaleDelay
+  0%, 70%, 100%
+    -webkit-transform: scale3D(1, 1, 1)
+    transform: scale3D(1, 1, 1)
+
+  35%
+    -webkit-transform: scale3D(0, 0, 1)
+    transform: scale3D(0, 0, 1)
+
+.spinner
+  width: 40px
+  height: 40px
+  margin: 100px auto
+
+.spinner__cube
+  width: 33%
+  height: 33%
+  float: left
+  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out
+  animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out
+
+  .sheets__item--left &
+    background-color: rgba(35, 112, 172, 0.9)
+
+  .sheets__item--right &
+    background-color: rgba(164, 51, 148, 0.9)
+
+.spinner__cube--1
+  -webkit-animation-delay: 0.2s
+  animation-delay: 0.2s
+
+.spinner__cube--2
+  -webkit-animation-delay: 0.3s
+  animation-delay: 0.3s
+
+.spinner__cube--3
+  -webkit-animation-delay: 0.4s
+  animation-delay: 0.4s
+
+.spinner__cube--4
+  -webkit-animation-delay: 0.1s
+  animation-delay: 0.1s
+
+.spinner__cube--5
+  -webkit-animation-delay: 0.2s
+  animation-delay: 0.2s
+
+.spinner__cube--6
+  -webkit-animation-delay: 0.3s
+  animation-delay: 0.3s
+
+.spinner__cube--7
+  -webkit-animation-delay: 0s
+  animation-delay: 0s
+
+.spinner__cube--8
+  -webkit-animation-delay: 0.1s
+  animation-delay: 0.1s
+
+.spinner__cube--9
+  -webkit-animation-delay: 0.2s
+  animation-delay: 0.2s
+

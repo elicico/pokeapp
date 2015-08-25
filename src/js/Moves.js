@@ -1,6 +1,7 @@
 var React = require('react');
 var pikachu = require('./client');
 var PropTypes = React.PropTypes;
+var Spinner = require('./Spinner');
 
 var Moves = React.createClass({
   getInitialState: function() {
@@ -35,14 +36,13 @@ var Moves = React.createClass({
   },
 
   render: function() {
-    console.log("render", this.state.moves);
     return (
       <div>
         <div className="moves">
           {
             this.state.moves.length > 0 ?
             this.renderMoves() :
-            "LOADING..."
+            <Spinner />
           }
         </div>
       </div>
@@ -50,37 +50,37 @@ var Moves = React.createClass({
   },
 
   renderMoves: function() {
-        return (
-          <div>
-            <ul className="flex-ul--moves result__list">
-              { this.state.moves.map(this.renderMoveInfos) }
-            </ul>
-          </div>
-        );
+    return (
+      <div>
+        <ul className="result__grid-list">
+          { this.state.moves.map(this.renderMoveInfos) }
+        </ul>
+      </div>
+    );
   },
 
   renderMoveInfos: function(move) {
-
     return (
-      <li key={ move.name } className="singleStat singleStat__flex">
+      <li key={ move.name } className="result__grid-list__item">
         <div className="move-detail">{ move.name }</div>
         <div className="flex-li">
-        <div className="move-detail">
-          <div className="move-detail__name">power</div>
-          <div className="move-detail__value">{ move.power }</div>
+          <div className="move-detail">
+            <div className="move-detail__name">power</div>
+            <div className="move-detail__value">{ move.power }</div>
+          </div>
+          <div className="move-detail">
+            <div className="move-detail__name">accuracy</div>
+            <div className="move-detail__value">{ move.accuracy }</div>
+          </div>
+          <div className="move-detail">
+            <div className="move-detail__name">pp</div>
+            <div className="move-detail__value">{ move.pp }</div>
+          </div>
         </div>
-        <div className="move-detail">
-          <div className="move-detail__name">accuracy</div>
-          <div className="move-detail__value">{ move.accuracy }</div>
+        <div className="move-detail move-detail__description-link">
+          description
+          <div className="move-detail move-detail__description">{ move.description }</div>
         </div>
-        <div className="move-detail">
-          <div className="move-detail__name">pp</div>
-          <div className="move-detail__value">{ move.pp }</div>
-        </div>
-      </div>
-      <div className="move-detail move-detail__description-link">description
-      <div className="move-detail move-detail__description">{ move.description }</div>
-      </div>
       </li>
     );
   }

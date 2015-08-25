@@ -1,5 +1,6 @@
 var React = require('react');
 var pikachu = require('./client');
+var Spinner = require('./Spinner');
 var PropTypes = React.PropTypes;
 
 var Stats = React.createClass({
@@ -29,7 +30,7 @@ var Stats = React.createClass({
           {
             this.state.infos ?
             this.renderInfos() :
-            "LOADING..."
+            <Spinner />
           }
         </div>
         </div>
@@ -49,7 +50,7 @@ var Stats = React.createClass({
 
     return (
       <div>
-        <ul className="flex-ul result__list">
+        <ul className="result__list">
           { stats.map(this.renderStats) }
         </ul>
       </div>
@@ -57,12 +58,15 @@ var Stats = React.createClass({
   },
 
   renderStats: function(stat) {
-
     return (
-      <li className="flex-li singleStat"><div className="statName">{ stat.name }</div><div className="statValue">{ stat.value }</div></li>
-    )
+      <div className="result__list__item">
+        <li className="info">
+          <div className="info__left">{ stat.name }</div>
+          <div className="info__right">{ stat.value }</div>
+        </li>
+      </div>
+    );
   }
-
 });
 
 module.exports = Stats;
