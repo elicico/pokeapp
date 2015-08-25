@@ -1,0 +1,7 @@
+.DS_Store
+.sass-cache/*
+node_modules/*
+dist/bundle.js
+dist/main.css
+dist/tmp.css
+dist/tmp.css.map
