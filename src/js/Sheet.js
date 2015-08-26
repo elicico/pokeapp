@@ -1,6 +1,6 @@
 var React = require('react');
 var Autocomplete = require('./Autocomplete');
-var Results = require('./Results');
+var Results = require('./Result');
 var PropTypes = React.PropTypes;
 
 var Sheet = React.createClass({

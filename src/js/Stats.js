@@ -18,53 +18,40 @@ var Stats = React.createClass({
           console.log("FAIL ", err);
         } else {
           this.setState({ infos: data });
-      }
-    }.bind(this));
+        }
+      }.bind(this));
   },
 
   render: function() {
 
-    return (
-      <div>
-        <div className="stats">
-          {
-            this.state.infos ?
+    return this.state.infos ?
             this.renderInfos() :
-            <Spinner />
-          }
-        </div>
-        </div>
-    );
+            <Spinner />;
   },
 
   renderInfos: function() {
 
     var stats = [
-      { name: "health points", value: JSON.stringify(this.state.infos.hp) },
-      { name: "attack", value: JSON.stringify(this.state.infos.attack) },
-      { name: "defense", value: JSON.stringify(this.state.infos.defense) },
-      { name: "special attack", value: JSON.stringify(this.state.infos.sp_atk) },
-      { name: "special defense", value: JSON.stringify(this.state.infos.sp_def) },
-      { name: "speed", value: JSON.stringify(this.state.infos.speed) }
+      { name: "health points", value: this.state.infos.hp },
+      { name: "attack", value: this.state.infos.attack },
+      { name: "defense", value: this.state.infos.defense },
+      { name: "special attack", value: this.state.infos.sp_atk },
+      { name: "special defense", value: this.state.infos.sp_def },
+      { name: "speed", value: this.state.infos.speed }
     ];
 
-    return (
-      <div>
-        <ul className="result__list">
-          { stats.map(this.renderStats) }
-        </ul>
-      </div>
-    )
+    return <ul className="infos">
+            { stats.map(this.renderStats) }
+          </ul>
+
   },
 
   renderStats: function(stat) {
     return (
-      <div className="result__list__item">
-        <li className="info">
-          <div className="info__left">{ stat.name }</div>
-          <div className="info__right">{ stat.value }</div>
+        <li key={ stat.name } className="infos__item">
+          <div className="infos__item__left">{ stat.name }</div>
+          <div className="infos__item__right">{ stat.value }</div>
         </li>
-      </div>
     );
   }
 });

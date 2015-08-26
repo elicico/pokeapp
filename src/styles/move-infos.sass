@@ -1,0 +1,68 @@
+.moves-list
+  display: flex
+  overflow-y: auto
+  margin: 30px auto
+  height: 70vh
+  max-width: 90%
+  flex-wrap: wrap
+  flex-direction: row
+
+.moves-list__item
+  width: 43%
+  margin: 10px
+  margin-top: 0
+  align-self: flex-start
+  flex: 0 0 auto
+  font-size: 15px
+  border-radius: 5px
+  padding: 10px
+
+  .sheets__item--left &
+    background-color: rgba(95, 150, 198, 0.6)
+
+  .sheets__item--right &
+    background-color: rgba(190, 94, 176, 0.6)
+
+.moves-list__item__name
+  text-align: center
+  padding-top: 10px
+  padding-bottom: 5px
+  font-size: 18px
+
+.moves-list__item__infos
+  display: flex
+  flex-flow: row wrap
+  justify-content: space-between
+
+.moves-list__item__info
+  flex: 0 0 auto
+  width: 33%
+
+.moves-list__item__info__value
+  font-size: 16px
+
+.moves-list__item__description
+  @extend .moves-list__item__name
+  display: none
+
+.moves-list__item__description-link
+  @extend .moves-list__item__name
+  margin-top: 10px
+  padding: 5px
+  border-radius: 5px
+  cursor: pointer
+
+  .sheets__item--left &
+    background: rgba(95, 150, 198, 0.6)
+
+  .sheets__item--right &
+    background: rgba(190, 94, 176, 0.6)
+
+.moves-list__item__description-link:hover
+  color: transparent
+  line-height: 0px
+
+.moves-list__item__description-link:hover .moves-list__item__description
+  display: block
+  color: #fff
+  line-height: 30px

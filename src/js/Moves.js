@@ -36,23 +36,15 @@ var Moves = React.createClass({
   },
 
   render: function() {
-    return (
-      <div>
-        <div className="moves">
-          {
-            this.state.moves.length > 0 ?
+    return this.state.moves.length > 0 ?
             this.renderMoves() :
             <Spinner />
-          }
-        </div>
-      </div>
-    );
   },
 
   renderMoves: function() {
     return (
       <div>
-        <ul className="result__grid-list">
+        <ul className="moves-list">
           { this.state.moves.map(this.renderMoveInfos) }
         </ul>
       </div>
@@ -61,25 +53,25 @@ var Moves = React.createClass({
 
   renderMoveInfos: function(move) {
     return (
-      <li key={ move.name } className="result__grid-list__item">
-        <div className="move-detail">{ move.name }</div>
-        <div className="flex-li">
-          <div className="move-detail">
-            <div className="move-detail__name">power</div>
-            <div className="move-detail__value">{ move.power }</div>
+      <li key={ move.name } className="moves-list__item">
+        <div className="moves-list__item__name">{ move.name }</div>
+        <div className="moves-list__item__infos">
+          <div className="moves-list__item__info">
+            <div className="moves-list__item__info__name">power</div>
+            <div className="moves-list__item__info__value">{ move.power }</div>
           </div>
-          <div className="move-detail">
-            <div className="move-detail__name">accuracy</div>
-            <div className="move-detail__value">{ move.accuracy }</div>
+          <div className="moves-list__item__info">
+            <div className="moves-list__item__info__name">accuracy</div>
+            <div className="moves-list__item__info__value">{ move.accuracy }</div>
           </div>
-          <div className="move-detail">
-            <div className="move-detail__name">pp</div>
-            <div className="move-detail__value">{ move.pp }</div>
+          <div className="moves-list__item__info">
+            <div className="moves-list__item__info__name">pp</div>
+            <div className="moves-list__item__info__value">{ move.pp }</div>
           </div>
         </div>
-        <div className="move-detail move-detail__description-link">
+        <div className="moves-list__item__description-link">
           description
-          <div className="move-detail move-detail__description">{ move.description }</div>
+          <div className="moves-list__item__description">{ move.description }</div>
         </div>
       </li>
     );

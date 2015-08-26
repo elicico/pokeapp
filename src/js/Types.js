@@ -31,55 +31,52 @@ var Types = React.createClass({
   },
 
   render: function() {
-    return (
-      <div>
-        <div className="stats">
-          {
-            this.state.types.length > 0 ?
+    return this.state.types.length > 0 ?
             this.renderTypes() :
-            <Spinner />
-          }
-        </div>
-        </div>
-    );
+            <Spinner />;
   },
 
   renderTypes: function() {
 
-    var typeInfos = [
-      { name: "type", value: this.state.types.map(function(type) {
+    var conglomerator = function(types, property) {
+      return types.reduce(function(acc, type) {
+        return acc.concat(type[property].map(function(type) {
           return type.name;
-        }).join(', ') },
-      { name: "strong vs", value: this.state.types.map(function(type) {
-          return type.super_effective.map(function(type) {
-            return type.name;
-          }).join(', ')
-        }).join(', ') },
-      { name: "weak vs", value: this.state.types.map(function(type) {
-          return type.weakness.map(function(type) {
-            return type.name;
-          }).join(', ')
-        }).join(', ') }
+          }));
+      }, [])
+    }
+
+    var typeInfos = [
+      {
+        name: "type",
+        values: this.state.types.map(function(type) {
+          return type.name;
+        })
+      },
+      {
+        name: "strong vs",
+        values: conglomerator(this.state.types, "super_effective")
+      },
+      {
+        name: "weak vs",
+        values: conglomerator(this.state.types, "weakness")
+      }
     ];
 
-        return (
-          <div>
-            <ul className="result__list">
-              { typeInfos.map(this.renderTypeInfos) }
-            </ul>
-          </div>
-        );
+    return (
+        <ul className="infos">
+          { typeInfos.map(this.renderTypeInfos) }
+        </ul>
+    );
   },
 
   renderTypeInfos: function(typeInfo) {
     return (
-      <div className="result__list__item">
-        <li className="info">
-          <div className="info__left">{ typeInfo.name }</div>
-          <div className="info__right">{ typeInfo.value }</div>
-        </li>
-      </div>
-    )
+      <li className="infos__item">
+        <div className="infos__item__left">{ typeInfo.name }</div>
+        <div className="infos__item__right">{ typeInfo.values.join(", ") }</div>
+      </li>
+    );
   }
 });
 
