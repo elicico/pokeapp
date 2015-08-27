@@ -1,0 +1,5 @@
+s3_id: AKIAJGSZX53CLABCH3CA
+s3_secret: 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
+s3_bucket: craftyditto.redengine.it
+site: dist
+s3_endpoint: eu-west-1

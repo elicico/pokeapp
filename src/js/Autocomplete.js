@@ -28,7 +28,11 @@ var Autocomplete = React.createClass({
 
     switch (e.keyCode) {
       case ENTER_KEY:
-      this.props.onSelectPokemon(results[this.state.selectedIndex]);
+      if (this.matchingPokemons(this.state.value).length > 0) {
+        this.props.onSelectPokemon(results[this.state.selectedIndex]);
+      } else {
+        this.setState({ value: "", selectedIndex: null });
+      }
       break;
       case ARROW_UP_KEY:
       var selectedIndex = Math.max(0, this.state.selectedIndex - 1);
@@ -75,7 +79,7 @@ var Autocomplete = React.createClass({
           placeholder="pokemon name here"
           value={ this.state.value }
         />
-        <ul 
+        <ul
           className={ "autocomplete__results__ul" + ( filteredResults.length > 0 ? " has-results" : "" ) }
           ref="itemsContainer"
         >
